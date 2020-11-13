@@ -39,7 +39,7 @@ const App = () => {
       <div className="nav">
         <form onSubmit={getSearch} className="search-form">
           <input
-            placeholder='Busque por receitas'
+            placeholder='Digite uma receita'
             className="search-bar"
             type="text"
             value={search}
