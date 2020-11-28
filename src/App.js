@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Recipe from './Recipe'
-import logo from './logo.svg';
 import './App.css';
+
 import { BsSearch } from 'react-icons/bs'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const App = () => {
 
@@ -11,17 +13,26 @@ const App = () => {
 
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState([])
-  const [query, setQuery] = useState(['chicken'])
+  const [query, setQuery] = useState([])
 
   useEffect(() => {
     getRecipes()
   }, [query])
 
+  const showSleketon = () => {
+    alert('Pesquisando...')
+  }
+
   const getRecipes = async () => {
-    const response = await fetch(`https://api.edamam.com/search?q=${search}&app_id=${APP_ID}&app_key=${APP_KEY}`)
-    const data = await response.json()
-    setRecipes(data.hits)
-    // console.log(data.hits)
+    
+    try {
+      const response = await fetch(`https://api.edamam.com/search?q=${search}&app_id=${APP_ID}&app_key=${APP_KEY}`)
+      const data = await response.json()
+      setRecipes(data.hits)
+      console.log('Resultado: ' + data.hits)
+    } catch (e) {
+      toast.error('Algo está dando errado, aguarde alguns instantes e tente novamente')
+    }
   }
 
   const updateSearch = e => {
@@ -63,7 +74,17 @@ const App = () => {
           />
         ))}
       </div>
-
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   )
 }
