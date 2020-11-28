@@ -1,0 +1,62 @@
+.skeletonCard::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -150px;
+    top: 0;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(to right, transparent 0%, #E8E8E8 50%, transparent 100%);
+    animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes load {
+    from {
+        left: -150px;
+    }
+    to {
+        left: 100%;
+    }
+}
+
+.skeletonCard {
+    position: relative;
+    overflow: hidden;
+    min-width: 340px;
+    height: 700px;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.05) !important;
+    margin: 30px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+.cardImg {
+    height: 100px;
+    width: 100px;
+    background: rgb(231, 231, 231);
+    border-radius: 50%;
+}
+
+.cardTime {
+    height: 25px;
+    width: 50px;
+    margin: 5px;
+    background: rgb(231, 231, 231);
+}
+
+.cardTitle {
+    height: 25px;
+    width: 150px;
+    background: rgb(231, 231, 231);
+}
+
+.cardIngredients {
+    height: 400px;
+    width: 100%;
+    background: rgb(231, 231, 231);
+    margin: 10px;
+}
